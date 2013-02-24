@@ -11,4 +11,4 @@ function benchmark(nx, ny, nz, num_iter) {
 }
 
 module.exports = benchmark;
-module.exports.prop_name = "Flat Array";
+module.exports.prop_name = "raw typed array";

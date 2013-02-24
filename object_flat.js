@@ -29,4 +29,4 @@ function benchmark(nx, ny, nz, num_iter) {
 }
 
 module.exports = benchmark;
-module.exports.prop_name = "Specialized object with flat accessor";
+module.exports.prop_name = "object with flat accessor";

@@ -31,4 +31,4 @@ function benchmark(nx, ny, nz, iter) {
 }
 
 module.exports = benchmark;
-module.exports.prop_name = "packed typed array wrapped by array"
+module.exports.prop_name = "array of contiguous typed arrays"

@@ -40,4 +40,4 @@ function benchmark(nx, ny, nz, num_iter) {
 }
 
 module.exports = benchmark;
-module.exports.prop_name = "Object with array indexing";
+module.exports.prop_name = "object with array accessor";

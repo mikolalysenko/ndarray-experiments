@@ -1,22 +1,20 @@
-function initArray_rec(shape, typecons, n) {
-  var d = shape.length-n;
-  if(n === 1) {
-    return new typecons(shape[d]);
-  }
-  var result = new Array(shape[d]);
-  for(var i=0; i<result.length; ++i) {
-    result[i] = initArray_rec(shape, typecons, n-1);
+"use strict";
+
+function initArray(nx, ny, nz) {
+  var result = Array(nx);
+  for(var i=nx-1; i>=0; --i) {
+    var ri = Array(ny);
+    result[i] = ri;
+    for(var j=ny-1; j>=0; --j) {
+      ri[j] = new Float32Array(nz);
+    }
   }
   return result;
 }
 
-function initArray(shape, typecons) {
-  return initArray_rec(shape, typecons, shape.length);
-}
-
 function benchmark(nx, ny, nz, iter) {
-  var A = initArray([nx,ny,nz], Float32Array)
-    , B = initArray([nx,ny,nz], Float32Array);
+  var A = initArray(nx,ny,nz)
+    , B = initArray(nx,ny,nz);
   for(var count=0; count<iter; ++count) {
     for(var i=0; i<nx; ++i) {
       for(var j=0; j<ny; ++j) {
@@ -30,3 +28,4 @@ function benchmark(nx, ny, nz, iter) {
 }
 
 module.exports = benchmark;
+module.exports.prop_name = "array of typed arrays"

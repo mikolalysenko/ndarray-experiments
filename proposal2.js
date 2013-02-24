@@ -1,29 +1,23 @@
-function initArray_rec(shape, stride, buffer, offset, n) {
-  if(n === 1) {
-    return buffer.subarray(offset, offset+shape[shape.length-1]);
-  }
-  var d = shape.length-n;
-  var result = new Array(shape[d]);
-  for(var i=0; i<result.length; ++i) {
-    result[i] = initArray_rec(shape, stride, buffer, offset, n-1);
-    offset += stride[d];
+"use strict";
+
+function initArray(nx, ny, nz) {
+  var buffer = new Float32Array(nx * ny * nz);
+  var result = Array(nx);
+  var offset = 0;
+  for(var i=nx-1; i>=0; --i) {
+    var ri = Array(ny);
+    result[i] = ri;
+    for(var j=ny-1; j>=0; --j) {
+      ri[j] = buffer.subarray(offset, offset + nz);
+      offset += nz;
+    }
   }
   return result;
 }
 
-function initArray(shape, type) {
-  var size = 1;
-  var stride = new Array(shape.length);
-  for(var i=shape.length-1; i>=0; --i) {
-    stride[i] = size;
-    size *= shape[i];
-  }
-  return initArray_rec(shape, stride, new type(size), 0, shape.length);
-}
-
 function benchmark(nx, ny, nz, iter) {
-  var A = initArray([nx,ny,nz], Float32Array)
-    , B = initArray([nx,ny,nz], Float32Array);
+  var A = initArray(nx,ny,nz)
+    , B = initArray(nx,ny,nz);
   for(var count=0; count<iter; ++count) {
     for(var i=0; i<nx; ++i) {
       for(var j=0; j<ny; ++j) {
@@ -37,3 +31,4 @@ function benchmark(nx, ny, nz, iter) {
 }
 
 module.exports = benchmark;
+module.exports.prop_name = "packed typed array wrapped by array"

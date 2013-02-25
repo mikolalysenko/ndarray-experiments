@@ -99,7 +99,7 @@ Excluding obviously stupid things,
     + Compatible with numeric.js
     + Good for images or situations where last component is relatively small
     + Bad when last component list large
-    + Need to convert to typed array when interface with WebGL
+    + Need to convert to typed array when interfaced with WebGL
     + Hard to ensure validity.  (eg, checking all rows are actually rows)
     
 * Array-of-typed-arrays
@@ -117,3 +117,5 @@ Excluding obviously stupid things,
     + Easy/simple validation
     + Can be directly uploaded to GPU
     + Awkward/non-standard interface, will require libraries standardize on convention
+    
+Based on performance considerations, I am currently leaning toward option 4, but dissenting opinions are welcome.

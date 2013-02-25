@@ -110,10 +110,11 @@ Excluding obviously stupid things,
     + Good when last component is large (eg volume data)
     + Bad when last component is small
     + With contiguous allocation, can support direct WebGL uploads
-    + Also hard to validate; even harder to check if array is contiguous
+    + Even harder to validate; need to check if array is contiguous and all types match
 
 * Custom multidimensional array object
     + Near optimal performance
     + Semantically complete
+    + Easy/simple validation
     + Can be directly uploaded to GPU
-    + Awkward/non-standard interface, will require libraries standardize on interface
+    + Awkward/non-standard interface, will require libraries standardize on convention

@@ -75,14 +75,13 @@ To run the experiment, just do:
 
 #Observations:
 
-* Obviously 1D typed arrays are best performance wise
-* Using `get([i,j,k])` for indexing is terrible performance wise.  `get(i,j,k)` is more than 10x faster.
+* Obviously 1D typed arrays are best performance
+* Using `get([i,j,k])` for indexing is terrible.  `get(i,j,k)` is more than 10x faster.
 * Similarly, it is pointless to store a separate offset field.  That can be handled using the the subarray() method from a typed array.
-* Wrapped objects nearly match the performance of typed arrays, which makes sense given that
-* Arrays-of-arrays are slower by a wide margin, but have the advantage of working best with other libraries.
-* Contiguous typed array allocation is marginally faster, might as well do it if you are using arrays-of-typed arrays
-* For arrays of arrays, it is a trade off by between typed arrays and native arrays.  Native arrays are faster if the last dimensions are small, while typed arrays are faster if they are large.
-
+* Wrapped objects nearly match the performance of typed arrays, within a factor <2
+* Arrays-of-arrays are 5-100x slower than objects, but have the advantage of interoperating with other libraries.
+* Contiguous typed array allocation is strictly faster by a small margin (~5%), so if you are going down that route might as well do it.
+* For arrays of arrays, it is a trade off by between typed arrays and native arrays.  Native arrays are faster if the last dimension is small, while typed arrays are faster if it is large.
 
 # Reasonable Options
 

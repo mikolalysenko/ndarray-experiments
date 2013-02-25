@@ -77,6 +77,7 @@ To run the experiment, just do:
 
 * Obviously 1D typed arrays are best performance wise
 * Using arrays for indexing is terrible performance wise.  The best interface for objects is: `set(i,j,k)` not `set([i,j,k])`.  Even controlling for array allocations the former is strictly faster.
+* Similarly, it is pointless to store a separate offset field.  That can be handled using the the subarray() method from a typed array.
 * Wrapped objects nearly match the performance of typed arrays, which makes sense given that
 * Arrays-of-arrays are slower by a wide margin, but have the advantage of working best with other libraries.
 * Contiguous typed array allocation is marginally faster, might as well do it if you are using arrays-of-typed arrays

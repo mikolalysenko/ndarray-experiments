@@ -1,0 +1,24 @@
+{
+  "name": "ndarray-experiment",
+  "version": "0.0.0",
+  "description": "Basic benchmark of pointwise operations on higher dimensional arrays",
+  "main": "experiment.js",
+  "dependencies": {
+    "numeric": "~1.2.6",
+    "cwise": "~0.1.2",
+    "ndarray": "~0.2.0",
+    "ndarray-ops": "~0.1.2"
+  },
+  "scripts": {
+    "test": "node experiment.js",
+    "start": "node experiment.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikolalysenko/ndarray-experiments.git"
+  },
+  "author": "Mikola Lysenko",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "10e70a93781a1ec9fc5474fa09f38cc91b554049"
+}

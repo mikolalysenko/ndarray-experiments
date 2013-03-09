@@ -6,7 +6,7 @@ function benchmark(nx, ny, nz, num_iter) {
     A[i] = B[i] = 0.0;
   }
   for(var count=0; count<num_iter; ++count) {
-    for(var i=0; i<sz; ++i) {
+    for(var i=sz-1; i>=0; --i) {
       A[i] += B[i] + 0.1;
       B[i] -= A[i] * 0.5;
     }

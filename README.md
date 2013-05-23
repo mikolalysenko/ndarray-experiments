@@ -13,11 +13,11 @@ To run the experiment, just do:
 
 With:
 
-* Core i7-3770k
-* Windows 7 x64
+* Core i7 @ 2.3 GHz.  8GB RAM
+* Mac OS X 10.8.3
 * Node v0.10.5
-* cwise 0.0.2
-* ndarray 0.2.3
+* cwise 0.1.2
+* ndarray 0.2.4
 * ndarray-ops 0.1.3
 * numeric 1.2.6
 

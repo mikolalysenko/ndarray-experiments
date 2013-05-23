@@ -1,7 +1,10 @@
-function benchmark(nx, ny, nz, num_iter) {
+function initArray(nx, ny, nz) {
   var sz = nx * ny * nz;
-  var A = new Float32Array(sz),
-      B = new Float32Array(sz);
+  return new Float32Array(sz);
+}
+
+function benchmark(A, B, nx, ny, nz, num_iter) {
+  var sz = nx * ny * nz;
   for(var count=0; count<num_iter; ++count) {
     for(var i=0; i<sz; ++i) {
       A[i] += B[i] + 0.1;
@@ -10,5 +13,6 @@ function benchmark(nx, ny, nz, num_iter) {
   }
 }
 
-module.exports = benchmark;
-module.exports.prop_name = "raw typed array";
+exports.benchmark = benchmark;
+exports.initArray = initArray;
+exports.prop_name = "raw typed array";

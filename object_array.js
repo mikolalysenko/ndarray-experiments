@@ -7,13 +7,13 @@ function ArrayN(data, offset, stride, shape) {
 
 ArrayN.prototype.get = function(x) {
   return this.data[x[0] * this.stride[0] + x[1] * this.stride[1] + x[2] * this.stride[2] + this.offset];
-}
+};
 
 ArrayN.prototype.set = function(x, v) {
   this.data[x[0] * this.stride[0] + x[1] * this.stride[1] + x[2] * this.stride[2] + this.offset] = v;
-}
+};
 
-function initArray(shape) {
+function _initArray(shape) {
   var stride = new Array(shape.length);
   var size = 1;
   for(var i=shape.length-1; i>=0; --i) {
@@ -23,9 +23,11 @@ function initArray(shape) {
   return new ArrayN(new Float32Array(size), 0, stride, shape);
 }
 
-function benchmark(nx, ny, nz, num_iter) {
-  var A = initArray([nx,ny,nz])
-    , B = initArray([nx,ny,nz]);
+function initArray(nx, ny, nz) {
+  return _initArray([nx, ny, nz]);
+}
+
+function benchmark(A, B, nx, ny, nz, num_iter) {
   var idx = [0,0,0];
   for(var count=0; count<num_iter; ++count) {
     for(idx[0]=0; idx[0]<nx; ++idx[0]) {
@@ -39,5 +41,6 @@ function benchmark(nx, ny, nz, num_iter) {
   }
 }
 
-module.exports = benchmark;
-module.exports.prop_name = "object with array accessor";
+exports.benchmark = benchmark;
+exports.initArray = initArray;
+exports.prop_name = "object with array accessor";

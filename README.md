@@ -86,7 +86,7 @@ Running experiment with dimensions = 4 x 512 x 512
    Proposal #9  numeric.js simple                        Total Init =     15ms  Execution =   4214ms
    Proposal #10 numeric.js pointwise()                   Total Init =      9ms  Execution =  10421ms
    Proposal #11 ndarray-ops                              Total Init =      6ms  Execution =   2192ms
-   Proposal #12 cwise                                    Total Init =   FAILED  Execution =   FAILED
+   Proposal #12 cwise                                    Total Init =      1ms  Execution =    640ms
 Running experiment with dimensions = 2 x 2 x 2048
    Proposal #1  raw native array                         Total Init =      0ms  Execution =     14ms
    Proposal #2  raw typed array                          Total Init =      0ms  Execution =      6ms

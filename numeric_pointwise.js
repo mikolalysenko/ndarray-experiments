@@ -1,4 +1,4 @@
-var numeric = require("numeric")
+var numeric = require("numeric");
 
 var operator = numeric.pointwise(
   ["ret[i]", "x[i]"],
@@ -6,16 +6,18 @@ var operator = numeric.pointwise(
     "ret[i] += x[i] + 0.1",
     "x[i] -= ret[i] * 0.5"
   ].join("\n")
-)
+);
 
-function benchmark(nx, ny, nz, num_iter) {
-  var A = numeric.rep([nx,ny,nz], 0)
-  var B = numeric.rep([nx,ny,nz], 0)
-  
+function initArray(nx, ny, nz) {
+  return numeric.rep([nx,ny,nz], 0);
+}
+
+function benchmark(A, B, nx, ny, nz, num_iter) {
   for(var count=0; count<num_iter; ++count) {
-    operator(A,B)
+    operator(A, B);
   }
 }
 
-module.exports = benchmark
-module.exports.prop_name = "numeric.js pointwise()"
+exports.benchmark = benchmark;
+exports.initArray = initArray;
+exports.prop_name = "numeric.js pointwise()";

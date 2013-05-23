@@ -1,9 +1,7 @@
-"use strict";
-
 function initArray(nx, ny, nz) {
-  var result = Array(nx);
+  var result = new Array(nx);
   for(var i=nx-1; i>=0; --i) {
-    var ri = Array(ny);
+    var ri = new Array(ny);
     result[i] = ri;
     for(var j=ny-1; j>=0; --j) {
       ri[j] = new Float32Array(nz);
@@ -12,9 +10,7 @@ function initArray(nx, ny, nz) {
   return result;
 }
 
-function benchmark(nx, ny, nz, iter) {
-  var A = initArray(nx,ny,nz)
-    , B = initArray(nx,ny,nz);
+function benchmark(A, B, nx, ny, nz, iter) {
   for(var count=0; count<iter; ++count) {
     for(var i=0; i<nx; ++i) {
       for(var j=0; j<ny; ++j) {
@@ -27,5 +23,6 @@ function benchmark(nx, ny, nz, iter) {
   }
 }
 
-module.exports = benchmark;
-module.exports.prop_name = "array of typed arrays"
+exports.benchmark = benchmark;
+exports.initArray = initArray;
+exports.prop_name = "array of typed arrays";

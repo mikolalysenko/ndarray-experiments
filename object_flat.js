@@ -7,15 +7,17 @@ function Array3(nx, ny, nz) {
 
 Array3.prototype.get = function(i, j, k) {
   return this.data[this.stride[0] * i + this.stride[1] * j + this.stride[2] * k + this.offset];
-}
+};
 
 Array3.prototype.set = function(i,j,k, v) {
   this.data[this.stride[0] * i + this.stride[1] * j + this.stride[2] * k + this.offset] = v;
+};
+
+function initArray(nx, ny, nz) {
+  return new Array3(nx, ny, nz);
 }
 
-function benchmark(nx, ny, nz, num_iter) {
-  var A = new Array3(nx,ny,nz)
-    , B = new Array3(nx,ny,nz);
+function benchmark(A, B, nx, ny, nz, num_iter) {
   for(var count=0; count<num_iter; ++count) {
     for(var i=0; i<nx; ++i) {
       for(var j=0; j<ny; ++j) {
@@ -28,5 +30,6 @@ function benchmark(nx, ny, nz, num_iter) {
   }
 }
 
-module.exports = benchmark;
-module.exports.prop_name = "object with flat accessor";
+exports.benchmark = benchmark;
+exports.initArray = initArray;
+exports.prop_name = "object with flat accessor";

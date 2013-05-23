@@ -31,30 +31,34 @@ function doTest(nx, ny, nz) {
         bench = prop.benchmark,
         A, B, C, initTime, runTime;
 
-    initTime = Date.now();
-    A = prop.initArray(nx, ny, nz);
-    B = prop.initArray(nx, ny, nz);
+    try {
+      initTime = Date.now();
+      A = prop.initArray(nx, ny, nz);
+      B = prop.initArray(nx, ny, nz);
 
-    if (bench.length === 7) {
-      C = prop.initArray(nx, ny, nz);
-      initTime = Date.now() - initTime;
-      runTime = Date.now();
-      for(var j=0; j<16; ++j) {
-        bench(A, B, C, nx, ny, nz, 16);
+      if (bench.length === 7) {
+        C = prop.initArray(nx, ny, nz);
+        initTime = (Date.now() - initTime) + "ms";
+        runTime = Date.now();
+        for(var j=0; j<16; ++j) {
+          bench(A, B, C, nx, ny, nz, 16);
+        }
+      } else {
+        initTime = (Date.now() - initTime) + "ms";
+        runTime = Date.now();
+        for(var j=0; j<16; ++j) {
+          bench(A, B, nx, ny, nz, 16);
+        }
       }
-    } else {
-      initTime = Date.now() - initTime;
-      runTime = Date.now();
-      for(var j=0; j<16; ++j) {
-        bench(A, B, nx, ny, nz, 16);
-      }
+      runTime = (Date.now() - runTime) + "ms";
+    } catch (e) {
+      initTime = runTime = "FAILED";
     }
-    runTime = Date.now() - runTime;
 
-    console.log("   Proposal #", padTo((i + 1).toString(), 2),
+    console.log("   Proposal", "#" + padTo((i + 1).toString(), 2),
                 padTo(prop.prop_name, 40),
-                "Total Init =", padTo(initTime.toString(), 6, "left") + "ms",
-                " Execution =", padTo(runTime.toString(), 6, "left") + "ms");
+                "Total Init =", padTo(initTime.toString(), 8, "left"),
+                " Execution =", padTo(runTime.toString(), 8, "left"));
   }
 }
 

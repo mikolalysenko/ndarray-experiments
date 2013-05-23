@@ -13,23 +13,48 @@ var proposals = [
   require("./cwise.js")
 ];
 
-function padTo(str, nchars) {
-  while(str.length < nchars) {
-    str += " ";
+function padTo(str, nchars, where) {
+  if (str.length < nchars) {
+    if (where === "left") // left pad
+      str = (new Array(nchars + 1 - str.length)).join(' ') + str;
+    else // right pad
+      str += (new Array(nchars + 1 - str.length)).join(' ');
   }
+
   return str;
 }
 
 function doTest(nx, ny, nz) {
-  console.log("Running experiment with dimensions = ", nx, "x", ny, "x", nz);
+  console.log("Running experiment with dimensions =", nx, "x", ny, "x", nz);
   for(var i=0; i<proposals.length; ++i) {
-    var prop = proposals[i];
-    var start_t = new Date();
-    for(var j=0; j<16; ++j) {
-      prop(nx, ny, nz, 16);
+    var prop = proposals[i],
+        bench = prop.benchmark,
+        A, B, C, initTime, runTime;
+
+    initTime = Date.now();
+    A = prop.initArray(nx, ny, nz);
+    B = prop.initArray(nx, ny, nz);
+
+    if (bench.length === 7) {
+      C = prop.initArray(nx, ny, nz);
+      initTime = Date.now() - initTime;
+      runTime = Date.now();
+      for(var j=0; j<16; ++j) {
+        bench(A, B, C, nx, ny, nz, 16);
+      }
+    } else {
+      initTime = Date.now() - initTime;
+      runTime = Date.now();
+      for(var j=0; j<16; ++j) {
+        bench(A, B, nx, ny, nz, 16);
+      }
     }
-    var end_t = new Date();
-    console.log("\tProposal #", i, padTo(prop.prop_name, 40), "Elapsed time =  ", (end_t - start_t));
+    runTime = Date.now() - runTime;
+
+    console.log("   Proposal #", padTo((i + 1).toString(), 2),
+                padTo(prop.prop_name, 40),
+                "Total Init =", padTo(initTime.toString(), 6, "left") + "ms",
+                " Execution =", padTo(runTime.toString(), 6, "left") + "ms");
   }
 }
 

@@ -1,7 +1,7 @@
 function initArray(nx, ny, nz) {
   var line = new Array(nz);
-//  line[0] = 0.1;
   for(var i=nz-1; i>=0; --i) {
+    line[i] = 0.1;
     line[i] = 0.0;
   }
   var result = new Array(nx);
@@ -10,6 +10,8 @@ function initArray(nx, ny, nz) {
     result[i] = ri;
     for(var j=ny-1; j>=0; --j) {
       ri[j] = line.slice(0);
+      ri[j][0] = 0.1;
+      ri[j][0] = 0.0;
     }
   }
   return result;
@@ -30,4 +32,4 @@ function benchmark(A, B, nx, ny, nz, num_iter) {
 
 exports.benchmark = benchmark;
 exports.initArray = initArray;
-exports.prop_name = "array of native arrays";
+exports.prop_name = "array of native arrays (fast init)";

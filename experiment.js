@@ -5,6 +5,7 @@ var proposals = [
   require("./object_flat.js"),
   require("./object_flat_no_offset.js"),
   require("./multi_native.js"),
+  require("./multi_native_fast_init.js"),
   require("./multi_typed.js"),
   require("./multi_cont.js"),
   require("./numeric_simple.js"),

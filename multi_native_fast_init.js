@@ -1,7 +1,6 @@
 function initArray(nx, ny, nz) {
   var line = new Array(nz);
   for(var i=nz-1; i>=0; --i) {
-    line[i] = 0.1;
     line[i] = 0.0;
   }
   var result = new Array(nx);

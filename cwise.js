@@ -10,7 +10,7 @@ var operator = cwise({
 });
 
 function initArray(nx, ny, nz) {
-  return ndarray.zeros([nx, ny, nz]);
+  return ndarray(new Float64Array(nx*ny*nz), [nx, ny, nz]);
 }
 
 function benchmark(A, B, nx, ny, nz, num_iter) {

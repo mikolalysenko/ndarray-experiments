@@ -5,8 +5,8 @@
   "main": "experiment.js",
   "dependencies": {
     "numeric": "~1.2.6",
-    "cwise": "~0.1.2",
-    "ndarray": "~0.2.4",
+    "cwise": "~0.3.3",
+    "ndarray": "~1.0.3",
     "ndarray-ops": "~0.1.3"
   },
   "scripts": {

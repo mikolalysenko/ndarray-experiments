@@ -10,6 +10,7 @@ var proposals = [
   require("./multi_cont.js"),
   require("./numeric_simple.js"),
   require("./numeric_pointwise.js"),
+  require("./ndarray-raw.js"),
   require("./ndarrayops.js"),
   require("./cwise.js")
 ];

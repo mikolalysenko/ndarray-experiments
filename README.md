@@ -5,122 +5,148 @@ What is the most efficient way to implement multidimensional arrays in JavaScrip
 **UPDATE**  Experiments for [numeric.js](http://www.numericjs.com/), [cwise](https://github.com/mikolalysenko/cwise) and [ndarray-ops](https://github.com/mikolalysenko/ndarray-ops) added
 
 # Experiment
-To run the experiment, just do:
+To run the experiment in node, just do:
 
     node experiment.js
+    
+If you want to try it in your browser, you can install beefy by typing:
+
+    npm install -g beefy
+    
+Then running
+
+    beefy experiment.js --open
 
 # Results:
+
+These are the results of running the experiment in the latest version of Chrome V8.
 
 With:
 
 * Core i7 @ 2.3 GHz.  8GB RAM
 * Mac OS X 10.8.3
-* Node v0.10.5
-* cwise 0.1.2
-* ndarray 0.2.4
-* ndarray-ops 0.1.3
+* Google Chrome 27
+* cwise 0.3.3
+* ndarray 1.0.4
+* ndarray-ops 1.1.0
 * numeric 1.2.6
 
+
 ```
-Running experiment with dimensions = 16 x 16 x 16
-   Proposal #1  raw native array                         Total Init =      0ms  Execution =      6ms
-   Proposal #2  raw typed array                          Total Init =      1ms  Execution =      9ms
-   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     25ms
-   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     10ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =      9ms
-   Proposal #6  array of native arrays                   Total Init =      0ms  Execution =     28ms
-   Proposal #7  array of native arrays (fast init)       Total Init =      1ms  Execution =      6ms
-   Proposal #8  array of typed arrays                    Total Init =      5ms  Execution =      7ms
-   Proposal #9  array of contiguous typed arrays         Total Init =      4ms  Execution =      6ms
-   Proposal #10 numeric.js simple                        Total Init =      0ms  Execution =     23ms
-   Proposal #11 numeric.js pointwise()                   Total Init =      0ms  Execution =     56ms
-   Proposal #12 ndarray-ops                              Total Init =      0ms  Execution =     25ms
-   Proposal #13 cwise                                    Total Init =      0ms  Execution =      6ms
-Running experiment with dimensions = 64 x 64 x 64
-   Proposal #1  raw native array                         Total Init =     49ms  Execution =    292ms
-   Proposal #2  raw typed array                          Total Init =      0ms  Execution =    270ms
-   Proposal #3  object with array accessor               Total Init =      1ms  Execution =    741ms
-   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =    428ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =    381ms
-   Proposal #6  array of native arrays                   Total Init =      1ms  Execution =   1632ms
-   Proposal #7  array of native arrays (fast init)       Total Init =      6ms  Execution =    274ms
-   Proposal #8  array of typed arrays                    Total Init =     92ms  Execution =    300ms
-   Proposal #9  array of contiguous typed arrays         Total Init =     68ms  Execution =    320ms
-   Proposal #10 numeric.js simple                        Total Init =      6ms  Execution =    989ms
-   Proposal #11 numeric.js pointwise()                   Total Init =      2ms  Execution =   3115ms
-   Proposal #12 ndarray-ops                              Total Init =      0ms  Execution =    716ms
-   Proposal #13 cwise                                    Total Init =      0ms  Execution =    222ms
-Running experiment with dimensions = 512 x 512 x 4
-   Proposal #1  raw native array                         Total Init =    256ms  Execution =   1140ms
-   Proposal #2  raw typed array                          Total Init =      0ms  Execution =   1109ms
-   Proposal #3  object with array accessor               Total Init =      0ms  Execution =   3034ms
-   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =   1831ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =   1629ms
-   Proposal #6  array of native arrays                   Total Init =    152ms  Execution =   6871ms
-   Proposal #7  array of native arrays (fast init)       Total Init =    107ms  Execution =   1508ms
-   Proposal #8  array of typed arrays                    Total Init =   5448ms  Execution =   1548ms
-   Proposal #9  array of contiguous typed arrays         Total Init =   4478ms  Execution =   1544ms
-   Proposal #10 numeric.js simple                        Total Init =     80ms  Execution =  17549ms
-   Proposal #11 numeric.js pointwise()                   Total Init =     97ms  Execution =  17947ms
-   Proposal #12 ndarray-ops                              Total Init =      0ms  Execution =   3508ms
-   Proposal #13 cwise                                    Total Init =      0ms  Execution =   1140ms
-Running experiment with dimensions = 512 x 4 x 512
-   Proposal #1  raw native array                         Total Init =    283ms  Execution =   1151ms
-   Proposal #2  raw typed array                          Total Init =      1ms  Execution =   1104ms
-   Proposal #3  object with array accessor               Total Init =      1ms  Execution =   2829ms
-   Proposal #4  object with flat accessor                Total Init =      1ms  Execution =   1675ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =   1486ms
-   Proposal #6  array of native arrays                   Total Init =     24ms  Execution =   6507ms
-   Proposal #7  array of native arrays (fast init)       Total Init =     13ms  Execution =   1053ms
-   Proposal #8  array of typed arrays                    Total Init =     48ms  Execution =   1141ms
-   Proposal #9  array of contiguous typed arrays         Total Init =     35ms  Execution =   1122ms
-   Proposal #10 numeric.js simple                        Total Init =     16ms  Execution =   5392ms
-   Proposal #11 numeric.js pointwise()                   Total Init =     16ms  Execution =  13377ms
-   Proposal #12 ndarray-ops                              Total Init =      4ms  Execution =   2722ms
-   Proposal #13 cwise                                    Total Init =      3ms  Execution =    812ms
-Running experiment with dimensions = 4 x 512 x 512
-   Proposal #1  raw native array                         Total Init =    267ms  Execution =   1152ms
-   Proposal #2  raw typed array                          Total Init =      1ms  Execution =   1099ms
-   Proposal #3  object with array accessor               Total Init =      2ms  Execution =   2869ms
-   Proposal #4  object with flat accessor                Total Init =      2ms  Execution =   1678ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =   1490ms
-   Proposal #6  array of native arrays                   Total Init =     24ms  Execution =   6480ms
-   Proposal #7  array of native arrays (fast init)       Total Init =     13ms  Execution =   1065ms
-   Proposal #8  array of typed arrays                    Total Init =     48ms  Execution =   1135ms
-   Proposal #9  array of contiguous typed arrays         Total Init =     45ms  Execution =   1114ms
-   Proposal #10 numeric.js simple                        Total Init =     20ms  Execution =   5396ms
-   Proposal #11 numeric.js pointwise()                   Total Init =     13ms  Execution =  12948ms
-   Proposal #12 ndarray-ops                              Total Init =      5ms  Execution =   2716ms
-   Proposal #13 cwise                                    Total Init =      3ms  Execution =    813ms
-Running experiment with dimensions = 2 x 2 x 2048
-   Proposal #1  raw native array                         Total Init =      1ms  Execution =     22ms
-   Proposal #2  raw typed array                          Total Init =      0ms  Execution =      9ms
-   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     22ms
-   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     13ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =     11ms
-   Proposal #6  array of native arrays                   Total Init =      0ms  Execution =     50ms
-   Proposal #7  array of native arrays (fast init)       Total Init =      0ms  Execution =      8ms
-   Proposal #8  array of typed arrays                    Total Init =      1ms  Execution =      8ms
-   Proposal #9  array of contiguous typed arrays         Total Init =      1ms  Execution =      8ms
-   Proposal #10 numeric.js simple                        Total Init =      0ms  Execution =     27ms
-   Proposal #11 numeric.js pointwise()                   Total Init =      0ms  Execution =     94ms
-   Proposal #12 ndarray-ops                              Total Init =      0ms  Execution =     24ms
-   Proposal #13 cwise                                    Total Init =      0ms  Execution =      7ms
-Running experiment with dimensions = 2048 x 2 x 2
-   Proposal #1  raw native array                         Total Init =      0ms  Execution =     21ms
-   Proposal #2  raw typed array                          Total Init =      0ms  Execution =      9ms
-   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     27ms
-   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     17ms
-   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =     15ms
-   Proposal #6  array of native arrays                   Total Init =      2ms  Execution =     57ms
-   Proposal #7  array of native arrays (fast init)       Total Init =      1ms  Execution =     17ms
-   Proposal #8  array of typed arrays                    Total Init =     84ms  Execution =     19ms
-   Proposal #9  array of contiguous typed arrays         Total Init =     69ms  Execution =     26ms
-   Proposal #10 numeric.js simple                        Total Init =      1ms  Execution =    158ms
-   Proposal #11 numeric.js pointwise()                   Total Init =      0ms  Execution =    222ms
-   Proposal #12 ndarray-ops                              Total Init =      0ms  Execution =     43ms
-   Proposal #13 cwise                                    Total Init =      0ms  Execution =     13ms
+Running experiment with dimensions = 16 x 16 x 16 experiment.js:30
+   Proposal #1  raw native array                         Total Init =      0ms  Execution =      8ms 
+   Proposal #2  raw typed array                          Total Init =      0ms  Execution =      9ms 
+   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     15ms 
+   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     10ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =     11ms 
+   Proposal #6  array of native arrays                   Total Init =      1ms  Execution =     25ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =      1ms  Execution =      5ms 
+   Proposal #8  array of typed arrays                    Total Init =      0ms  Execution =      9ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      1ms  Execution =      9ms 
+   Proposal #10 numeric.js simple                        Total Init =      0ms  Execution =     47ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =      0ms  Execution =     64ms 
+   Proposal #12 ndarray-raw                              Total Init =      4ms  Execution =      8ms 
+   Proposal #13 ndarray-ops                              Total Init =      0ms  Execution =     52ms 
+   Proposal #14 cwise                                    Total Init =      0ms  Execution =      9ms 
+Running experiment with dimensions = 64 x 64 x 64 experiment.js:30
+   Proposal #1  raw native array                         Total Init =     57ms  Execution =    660ms 
+   Proposal #2  raw typed array                          Total Init =      0ms  Execution =    471ms 
+   Proposal #3  object with array accessor               Total Init =      1ms  Execution =    732ms 
+   Proposal #4  object with flat accessor                Total Init =      1ms  Execution =    470ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =    464ms 
+   Proposal #6  array of native arrays                   Total Init =      3ms  Execution =   1516ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =     22ms  Execution =    244ms 
+   Proposal #8  array of typed arrays                    Total Init =      7ms  Execution =    462ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      4ms  Execution =    556ms 
+   Proposal #10 numeric.js simple                        Total Init =      9ms  Execution =  11902ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =      5ms  Execution =   3399ms 
+   Proposal #12 ndarray-raw                              Total Init =      1ms  Execution =    256ms 
+   Proposal #13 ndarray-ops                              Total Init =      3ms  Execution =    770ms 
+   Proposal #14 cwise                                    Total Init =      0ms  Execution =    201ms 
+Running experiment with dimensions = 512 x 512 x 4 experiment.js:30
+   Proposal #1  raw native array                         Total Init =    199ms  Execution =   1130ms 
+   Proposal #2  raw typed array                          Total Init =      4ms  Execution =   1857ms 
+   Proposal #3  object with array accessor               Total Init =      5ms  Execution =   3025ms 
+   Proposal #4  object with flat accessor                Total Init =      5ms  Execution =   1895ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =   1853ms 
+   Proposal #6  array of native arrays                   Total Init =    162ms  Execution =   6221ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =    138ms  Execution =   1147ms 
+   Proposal #8  array of typed arrays                    Total Init =    543ms  Execution =   1975ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =    395ms  Execution =   1921ms 
+   Proposal #10 numeric.js simple                        Total Init =     81ms  Execution =  59890ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =     81ms  Execution =  17571ms 
+   Proposal #12 ndarray-raw                              Total Init =      3ms  Execution =   1172ms 
+   Proposal #13 ndarray-ops                              Total Init =      3ms  Execution =   3799ms 
+   Proposal #14 cwise                                    Total Init =      3ms  Execution =    940ms 
+Running experiment with dimensions = 512 x 4 x 512 experiment.js:30
+   Proposal #1  raw native array                         Total Init =    228ms  Execution =   1841ms 
+   Proposal #2  raw typed array                          Total Init =      1ms  Execution =   1856ms 
+   Proposal #3  object with array accessor               Total Init =      1ms  Execution =   2886ms 
+   Proposal #4  object with flat accessor                Total Init =      1ms  Execution =   1871ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =   1869ms 
+   Proposal #6  array of native arrays                   Total Init =     34ms  Execution =   6015ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =     25ms  Execution =    741ms 
+   Proposal #8  array of typed arrays                    Total Init =      6ms  Execution =   1875ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      4ms  Execution =   1891ms 
+   Proposal #10 numeric.js simple                        Total Init =     31ms  Execution =  45547ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =     15ms  Execution =  13322ms 
+   Proposal #12 ndarray-raw                              Total Init =      3ms  Execution =   1003ms 
+   Proposal #13 ndarray-ops                              Total Init =      5ms  Execution =   2766ms 
+   Proposal #14 cwise                                    Total Init =      3ms  Execution =    767ms 
+Running experiment with dimensions = 4 x 512 x 512 experiment.js:30
+   Proposal #1  raw native array                         Total Init =    208ms  Execution =   2232ms 
+   Proposal #2  raw typed array                          Total Init =      1ms  Execution =   1885ms 
+   Proposal #3  object with array accessor               Total Init =      1ms  Execution =   2907ms 
+   Proposal #4  object with flat accessor                Total Init =      1ms  Execution =   1884ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      1ms  Execution =   1870ms 
+   Proposal #6  array of native arrays                   Total Init =     37ms  Execution =   5959ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =     26ms  Execution =    762ms 
+   Proposal #8  array of typed arrays                    Total Init =      6ms  Execution =   1883ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      4ms  Execution =   1912ms 
+   Proposal #10 numeric.js simple                        Total Init =     23ms  Execution =  39231ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =     16ms  Execution =  13258ms 
+   Proposal #12 ndarray-raw                              Total Init =      3ms  Execution =   1002ms 
+   Proposal #13 ndarray-ops                              Total Init =      5ms  Execution =   2773ms 
+   Proposal #14 cwise                                    Total Init =      3ms  Execution =    770ms 
+Running experiment with dimensions = 2 x 2 x 2048 experiment.js:30
+   Proposal #1  raw native array                         Total Init =      0ms  Execution =     16ms 
+   Proposal #2  raw typed array                          Total Init =      0ms  Execution =     16ms 
+   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     26ms 
+   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     17ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =     17ms 
+   Proposal #6  array of native arrays                   Total Init =      0ms  Execution =     49ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =      0ms  Execution =      7ms 
+   Proposal #8  array of typed arrays                    Total Init =      0ms  Execution =     16ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      0ms  Execution =     16ms 
+   Proposal #10 numeric.js simple                        Total Init =      0ms  Execution =    230ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =      1ms  Execution =    139ms 
+   Proposal #12 ndarray-raw                              Total Init =      0ms  Execution =      8ms 
+   Proposal #13 ndarray-ops                              Total Init =      0ms  Execution =     49ms 
+   Proposal #14 cwise                                    Total Init =      0ms  Execution =      9ms 
+Running experiment with dimensions = 2048 x 2 x 2 experiment.js:30
+   Proposal #1  raw native array                         Total Init =      1ms  Execution =     15ms 
+   Proposal #2  raw typed array                          Total Init =      0ms  Execution =     15ms 
+   Proposal #3  object with array accessor               Total Init =      0ms  Execution =     34ms 
+   Proposal #4  object with flat accessor                Total Init =      0ms  Execution =     25ms 
+   Proposal #5  object with flat accessor, no offset     Total Init =      0ms  Execution =     23ms 
+   Proposal #6  array of native arrays                   Total Init =      1ms  Execution =     51ms 
+   Proposal #7  array of native arrays (fast init)       Total Init =      2ms  Execution =     17ms 
+   Proposal #8  array of typed arrays                    Total Init =      7ms  Execution =     20ms 
+   Proposal #9  array of contiguous typed arrays         Total Init =      6ms  Execution =     19ms 
+   Proposal #10 numeric.js simple                        Total Init =     21ms  Execution =    458ms 
+   Proposal #11 numeric.js pointwise()                   Total Init =      2ms  Execution =    303ms 
+   Proposal #12 ndarray-raw                              Total Init =      0ms  Execution =     17ms 
+   Proposal #13 ndarray-ops                              Total Init =      0ms  Execution =     83ms 
+   Proposal #14 cwise                                    Total Init =      0ms  Execution =     18ms 
 ```      
+
+# UPDATE
+
+Interesting things to note:
+
+* v8 can optimize arrays of native arrays very well, providing that they are initialized in the right way very carefully.
+* The downside to using native arrays though is that you can't do constant time transposing and slicing, so ndarrays may still be preferable for this reason.
+* While it isn't as fast as using cwise, directly accessing ndarrays performs pretty well providing you iterate in the order of the stride of the ndarray.
 
 # Generic Observations
 
